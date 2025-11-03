@@ -12,7 +12,7 @@ const QUESTIONS = [
     id: 1,
     question: "React est principalement utilisé pour...",
     choices: ["le backend", "La construction d'UI", "La gestion de base de données"],
-    answerIndex: 1, // <-- corrigé (avant: anwerIndex)
+    answerIndex: 1, // indique quelle réponse est la bonne
   },
   {
     id: 2,
@@ -78,8 +78,8 @@ app.get("/api/questions", (req, res) => {
 // logique de verif de reponse
 app.get("/api/check", (req, res) => {
     //le parseInt transforme une chaine de caracteres en nombre entier
-    // Cette ligne prend l’identifiant envoyé dans l’URL, qui est au départ du texte, 
-    // et le transforme en nombre entier pour que je puisse l’utiliser dans mon code. 
+  //Ce code stocke la position de la bonne réponse pour chaque question,
+  //afin que le serveur puisse vérifier si le choix de l’utilisateur correspond à celle-ci.
   const id = parseInt(req.query.id, 10);
   const choice = parseInt(req.query.choice, 10);
   const q = QUESTIONS.find((q) => q.id === id);
